@@ -30,6 +30,10 @@
     max-width: 64rem;
 }
 
+.container.narrow{
+    max-width: 56rem;
+}
+
 html{
     height: 100%;
     font-size:100%;
@@ -101,3 +105,4 @@ body{
 .clearfix::after{
     clear: both;
 }
+
