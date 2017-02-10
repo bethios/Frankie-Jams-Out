@@ -27,6 +27,22 @@ var albumMarconi = {
      ]
  };
 
+var albumCrazy = {
+     title: 'Crazy Ex-Girlfriend Season One Soundtrack',
+     artist: 'Rachel Bloom',
+     label: 'CW',
+     year: '2016',
+     albumArtUrl: 'assets/images/album_covers/15.png',
+     songs: [
+         { title: 'Im So Good At Yoga', duration: '1:01' },
+         { title: 'California Christmastime', duration: '5:01' },
+         { title: 'Settle for Me', duration: '3:21'},
+         { title: 'What will it be?', duration: '3:14' },
+         { title: 'Im In a Sexy French Depression', duration: '2:15'}
+     ]
+ };
+
+
 var createSongRow = function(songNumber, songName, songLength){
     var template=
         '<tr class="album-view-song-item">'
@@ -61,4 +77,19 @@ var setCurrentAlbum = function(album){
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
 }
+
+var listOfAlbums = [albumMarconi, albumCrazy, albumPicasso];
+
+function switchCovers(){
+    setCurrentAlbum(listOfAlbums[0]);
+    
+    listOfAlbums.push(listOfAlbums.shift());
+    console.log(listOfAlbums);
+}
+
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+
+albumImage.addEventListener("click", switchCovers);
+
+
 
