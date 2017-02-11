@@ -49,7 +49,7 @@ body{
 .navbar{
     position: relative;
     padding: 0.5rem; 
-    background-color: rgba(101,18,95,0.5);
+    background-color: rgb(29, 65, 163);
     z-index: 1;
 }
 
@@ -73,26 +73,26 @@ body{
     display: table-cell;
     position: relative;
     height: 100%;
-    padding-left: 1rem; 
-    padding-right: 1rem; 
+    padding-left: 2rem; 
+    padding-right: 2rem; 
     vertical-align: middle;
     color: white;
-    font-size: 0.625rem; 
-    letter-spacing: 0.05rem; 
-    font-weight: 700; 
+    font-size: 0.825rem; 
+    letter-spacing: 0.2rem; 
+    font-weight: 750; 
     text-transform: uppercase; 
     text-decoration: none;
     cursor: pointer;
 }
 
 .links-container .navbar-link:hover {
-    color: rgb(233,50,117);
+    color: rgb(209,209,209);
 }
 
 
 .links-container .navbar-link:active {
     background-color:white;
-    color: rgb(233,50,117);
+    color: rgb(29, 65, 163);
 }
 
 
