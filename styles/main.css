@@ -49,8 +49,9 @@ body{
 .navbar{
     position: relative;
     padding: 0.5rem; 
-    background-color: rgb(29, 65, 163);
+    background-color: rgb(22, 55, 140);
     z-index: 1;
+    border-bottom: solid black 2px;
 }
 
 .navbar .logo {
