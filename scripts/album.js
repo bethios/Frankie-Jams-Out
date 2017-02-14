@@ -74,19 +74,32 @@ var setCurrentAlbum = function(album){
     }  
 };
 
-/* Don't think I need this anymore, but commenting it out for hte meantime to be safe. 
-function findParentByClassName(elementClass){
-    return document.getElementsByClassName(elementClass).parentElement; 
-}*/
-
-function getSongItem(element){
-    var currentElement = element; 
-    
-    while(element.parentElement.classList !== "album-view-song-item"){
-        currentElement = element.parentElement; 
+var findParentByClassName = function(element, targetClass) {
+    if (element) {
+        var currentParent = element.parentElement;
+        while (currentParent.className != targetClass && currentParent.className !== null) {
+            currentParent = currentParent.parentElement;
+        }
+        return currentParent;
     }
-    
-    return currentElement.querySelector("album-view-song-item")
+};
+
+var getSongItem = function(element) {
+    switch (element.className) {
+        case 'album-song-button':
+        case 'ion-play':
+        case 'ion-pause':
+            return findParentByClassName(element, 'song-item-number');
+        case 'album-view-song-item':
+            return element.querySelector('.song-item-number');
+        case 'song-item-title':
+        case 'song-item-duration':
+            return findParentByClassName(element, 'album-view-song-item').querySelector('.song-item-number');
+        case 'song-item-number':
+            return element;
+        default:
+            return;
+    }  
 };
 
 var clickHandler = function(targetElement){
