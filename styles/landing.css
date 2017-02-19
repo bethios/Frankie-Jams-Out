@@ -21,11 +21,13 @@ body.landing{
     transform: translateY(-50%);
     width: 100%;
     text-align: center; 
-    font-size: 4rem;
+    font-size: 7rem;
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 0.5rem; 
-    text-shadow: 1px 1px 0px rgb(22, 55, 140);
+    text-shadow: 2px 2px 0px rgb(22, 55, 140);
+    font-family: 'Bahiana';
+
 }
 
 .selling-points{
@@ -46,17 +48,19 @@ body.landing{
     -webkit-transition-delay: 0.5s;
     -moz-transition-delay: 0.5s;
     transition-delay: 0.5s;
+    font-size: 1rem;
 }
 
 .point .point-title{
     font-size: 1.5rem;
     font-weight: 600;
     color: white;
+    margin: 10px;
 }
 
 .ion-headphone, 
 .ion-mic-c, 
 .ion-iphone{
-    color: grey;
+    color: royalblue;
     font-size: 5rem;
 }
