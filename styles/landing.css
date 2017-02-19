@@ -1,14 +1,16 @@
 body.landing{
-    background-color: rgb(22, 55, 140);
+    background-color: rgb(22, 181, 244);
 }
 
 .hero-content{
     position: relative;
     min-height: 600px;
-    background-image:url("../assets/images/brobots_bg.jpg");
+    background-image:url("../assets/images/kidWithGuitar.jpg");
     background-repeat: no-repeat;
     background-position: center center; 
-    background-size: cover; 
+    background-size: cover;
+    border-bottom: solid dimgray 2px;
+
 }
 
 .hero-content .hero-title {

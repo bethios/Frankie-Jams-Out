@@ -1,5 +1,5 @@
 body.collection {
-     background-image: url(../assets/images/blurred_backgrounds/dark-blur-background-splitshire-best-splitshire-8098-1024x683.jpg);
+     background-image: url(../assets/images/splatteredPaint.jpg);
      background-repeat: no-repeat;
      background-attachment: fixed;
      background-position: center center;
@@ -23,21 +23,27 @@ body.collection {
  
  .collection-album-container .caption p {
      font-size: 1rem;
-     font-weight: 300;
-     color: rgba(255, 255, 255, 0.6);
+     font-weight: 400;
+     color: black;
  }
  
  .collection-album-container .caption p a {
-     color: rgba(255, 255, 255, 0.6);
+     color: black;
      text-decoration: none;
  }
  
  .collection-album-container .caption p a.album-name {
-     color: white;
+     color: black;
  }
  
  .collection-album-container img {
      width: 80%;
  }
+
+.collection-album-frame {
+    padding-top: 15px;
+    padding-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
 
 
