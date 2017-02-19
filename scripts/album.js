@@ -1,3 +1,12 @@
+var setSong = function(songNumber){
+    currentlyPlayingSongNumber = Number(songNumber);
+    currentSongFromAlbum = currentAlbum.songs[songNumber -1];
+};
+
+var getSongNumberCell = function(number){
+    return $('.song-item-number[data-song-number="' + number + '"]');
+};
+
 var createSongRow = function(songNumber, songName, songLength){
     var template=
         '<tr class="album-view-song-item">'
@@ -86,15 +95,28 @@ var updatePlayerBarSong = function() {
     $('.main-controls .play-pause').html(playerBarPauseButton);
 };
 
-var nextSong = function(){
+var skipSong = function(directionToSkip){
     var lastSongIndex = currentlyPlayingSongNumber -1;
     var lastSongNumber = Number(currentlyPlayingSongNumber);
-    var nextToPlayIndex = lastSongIndex + 1;
-    var nextSongNumber = lastSongNumber + 1;
+    var nextToPlayIndex;
+    var nextSongNumber;
 
-    if(nextToPlayIndex >= currentAlbum.songs.length){
-        nextToPlayIndex = 0;
-        nextSongNumber = 1;
+    if(directionToSkip === 'nextSong'){
+        nextToPlayIndex = lastSongIndex + 1;
+        nextSongNumber = lastSongNumber + 1;
+
+        if(nextToPlayIndex >= currentAlbum.songs.length){
+            nextToPlayIndex = 0;
+            nextSongNumber = 1;
+        }
+    }else if(directionToSkip === 'previousSong'){
+        nextToPlayIndex = lastSongIndex - 1;
+        nextSongNumber = lastSongNumber -1;
+
+        if(nextToPlayIndex < 0){
+            nextToPlayIndex += currentAlbum.songs.length;
+            nextSongNumber += currentAlbum.songs.length;
+        }
     }
 
     setSong(nextSongNumber);
@@ -105,41 +127,6 @@ var nextSong = function(){
 
     $previousSongNumberCell.html(pauseButtonTemplate);
     $lastSongNumberCell.html(lastSongNumber);
-};
-
-var previousSong = function(){
-    var lastSongIndex = currentlyPlayingSongNumber - 1;
-    var lastSongNumber = currentlyPlayingSongNumber;
-    var nextToPlayIndex = lastSongIndex - 1;
-    var nextSongNumber = lastSongNumber -1;
-
-    if(nextToPlayIndex < 0){
-        nextToPlayIndex += currentAlbum.songs.length;
-        nextSongNumber += currentAlbum.songs.length;
-    }
-
-    setSong(nextSongNumber);
-    updatePlayerBarSong();
-
-    var $previousSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
-    var $lastSongNumberCell = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
-
-    $previousSongNumberCell.html(pauseButtonTemplate);
-    $lastSongNumberCell.html(lastSongNumber);
-
-};
-var setSong = function(songNumber){
-    if(songNumber === null){
-        currentlyPlayingSongNumber = null;
-        currentSongFromAlbum = null;
-    }
-
-    currentlyPlayingSongNumber = songNumber;
-    currentSongFromAlbum = currentAlbum.songs[songNumber -1];
-};
-
-var getSongNumberCell = function(number){
-  return $('.song-item-number[data-song-number="' + number + '"]');
 };
 
 var songRows = document.getElementsByClassName('album-view-song-item');
@@ -162,8 +149,14 @@ var $nextButton = $('.main-controls .next');
 
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
-    $previousButton.click(previousSong);
-    $nextButton.click(nextSong);
+    $previousButton.click(function(){
+        return skipSong('previousSong')
+    });
+
+    $nextButton.click(function(){
+        return skipSong('nextSong')
+    });
+
 });
 
 var listOfAlbums = [albumMarconi, albumCrazy, albumPicasso];
@@ -172,7 +165,6 @@ function switchCovers(){
     setCurrentAlbum(listOfAlbums[0]);
     
     listOfAlbums.push(listOfAlbums.shift());
-    console.log(listOfAlbums);
 }
 
 var albumImage = document.getElementsByClassName('album-cover-art')[0];
