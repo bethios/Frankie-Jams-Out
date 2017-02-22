@@ -118,6 +118,20 @@ var updatePlayerBarSong = function() {
     $('.main-controls .play-pause').html(playerBarPauseButton);
 };
 
+var togglePlayFromPlayerBar = function(){
+    var currentlyPlayingCell= getSongNumberCell(currentlyPlayingSongNumber);
+
+    if(currentSoundFile.isPaused()){
+        currentlyPlayingCell.html(pauseButtonTemplate);
+        $('.main-controls .play-pause').html(playerBarPauseButton);
+        currentSoundFile.play();
+    }else if(currentSoundFile !== null && currentSoundFile.isPaused() === false){
+        currentlyPlayingCell.html(playButtonTemplate);
+        $('.main-controls .play-pause').html(playerBarPlayButton);
+        currentSoundFile.pause();
+    }
+};
+
 var skipSong = function(directionToSkip){
     var lastSongIndex = currentlyPlayingSongNumber -1;
     var lastSongNumber = Number(currentlyPlayingSongNumber);
@@ -172,6 +186,7 @@ var currentVolume = 80;
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
 
+var barPlayPause = $('.main-controls .play-pause');
 
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
@@ -183,6 +198,7 @@ $(document).ready(function() {
         return skipSong('nextSong')
     });
 
+    barPlayPause.click(togglePlayFromPlayerBar);
 });
 
 var listOfAlbums = [albumMarconi, albumCrazy, albumPicasso];
