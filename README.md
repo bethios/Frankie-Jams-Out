@@ -7,4 +7,3 @@ Built with:
 - CSS3
 - vanilla Javascript
 - JQuery
-- Angular

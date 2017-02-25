@@ -193,9 +193,6 @@ var setupSeekBars = function() {
             var barWidth = $seekBar.width();
             var seekBarFillRatio = offsetX / barWidth;
 
-            /* I tried a similar conditional statment as in the click event just above but I couldn't
-            * get it to work so I ended up going with the bloc solution below.  I still don't understand
-            * though why it wouldn't work for this one. insights please? */
             if ($seekBar.parent().attr('class') == 'seek-control') {
                 seek(seekBarFillRatio * currentSoundFile.getDuration());
             } else {
@@ -312,13 +309,19 @@ $(document).ready(function() {
 var listOfAlbums = [albumMarconi, albumCrazy, albumPicasso];
 
 function switchCovers(){
+    if(currentlyPlayingSongNumber) {
+        currentlyPlayingSongNumber = null;
+        currentSoundFile.pause();
+    }
+
+    currentSoundFile.pause();
+
+
     setCurrentAlbum(listOfAlbums[0]);
-    
     listOfAlbums.push(listOfAlbums.shift());
 }
 
 var albumImage = document.getElementsByClassName('album-cover-art')[0];
 
 albumImage.addEventListener("click", switchCovers);
-
 
