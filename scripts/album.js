@@ -238,25 +238,25 @@ var togglePlayFromPlayerBar = function(){
 var skipSong = function(directionToSkip){
     var lastSongIndex = currentlyPlayingSongNumber -1;
     var lastSongNumber = Number(currentlyPlayingSongNumber);
+    var indexAmountToChange = 0;
     var nextToPlayIndex;
     var nextSongNumber;
 
     if(directionToSkip === 'nextSong'){
-        nextToPlayIndex = lastSongIndex + 1;
-        nextSongNumber = lastSongNumber + 1;
-
-        if(nextToPlayIndex >= currentAlbum.songs.length){
-            nextToPlayIndex = 0;
-            nextSongNumber = 1;
-        }
+        indexAmountToChange++;
     }else if(directionToSkip === 'previousSong'){
-        nextToPlayIndex = lastSongIndex - 1;
-        nextSongNumber = lastSongNumber -1;
+        indexAmountToChange--;
+    }
 
-        if(nextToPlayIndex < 0){
-            nextToPlayIndex += currentAlbum.songs.length;
-            nextSongNumber += currentAlbum.songs.length;
-        }
+    nextToPlayIndex = lastSongIndex + indexAmountToChange;
+    nextSongNumber = lastSongNumber + indexAmountToChange;
+
+    if(nextToPlayIndex < 0){
+        nextToPlayIndex += currentAlbum.songs.length;
+        nextSongNumber += currentAlbum.songs.length;
+    } else if(nextToPlayIndex >= currentAlbum.songs.length){
+        nextToPlayIndex = 0;
+        nextSongNumber = 1;
     }
 
     setSong(nextSongNumber);
